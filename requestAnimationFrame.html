@@ -53,7 +53,16 @@
 
 
         }
-
+        
+        document.body.addEventListener('click', () => {
+            if (spinning) {
+                cancelAnimationFrame(rAF);
+                spinning = false;
+                
+            } else {
+                draw();
+                spinning = true;
+            }
        
         })
        
