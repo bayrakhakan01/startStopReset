@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Greeter App (setTimeOut)</title>
+    <style>
+        p {
+            padding:  50px ;
+            font-size: 20px;
+            color: rgba(70, 158, 132, 0.65);
+        }
+    </style>
+</head>
+<body>
+    <p class="firstP"></p>
+    <p class="firstP2"></p>
+    <script>
+         const para1 = document.querySelector('.firstP');
+        const para2 = document.querySelector('.firstP2');
+ /*       let myGreeting = setTimeout(function () {
+            para1.innerHTML = 'Hello, Mr. Universe!';
+        },2000)
+        para1.textContent = 'hey guys ';
+
+        for (let i = 0; i < 2000; i++) {
+            para2.textContent = i +' time';
+            
+        }
+ */
+        function sayHi(who) {
+            para1.innerHTML = `Hello ${who}!`;
+        }
+
+        let myGreating = setTimeout(sayHi, 5000, 'hakan');
+
+        //clearTimeout(myGreating)
+
+
+        function displayTime() {
+            let date = new Date();
+            let time = date.toLocaleTimeString()
+            let date1= date.toLocaleDateString()
+            para2.innerHTML = `${date1}<br><br> ${time} <br><br>${date}`
+        }
+        
+        const createclock = setInterval(displayTime, 2000);
+        clearInterval(createclock);
+    </script>
+</body>
+</html>

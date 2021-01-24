@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clockTest</title>
+    <style>
+        p {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <p class="clock"></p>
+    <p><button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <button class="reset">Reset</button></p>
+    <p class="restime"></p>
+    <script>
+        let secCount = 0;
+        let lastMom;
+        const paraClock = document.querySelector('.clock')
+        const paraRestime = document.querySelector('.restime')
+        function displayWatch() {
+            let hour = Math.floor(secCount/3600);
+            let min = Math.floor((secCount%3600)/60);
+            let sec = Math.floor(secCount%60);
+
+            let displayHours = (hour < 10) ? `0${hour}` : hour;
+            let displayMinutes = (min < 10) ? `0${min}` : min;
+            let displaySeconds = (sec < 10) ? `0${sec}` : sec;
+
+            paraClock.textContent = `${displayHours} : ${displayMinutes}: ${displaySeconds}`
+
+            secCount ++;
+        };
+        function displayWatch2() {
+            let hour2 = Math.floor(secCount/3600);
+            let min2 = Math.floor((secCount%3600)/60);
+            let sec2 = Math.floor(secCount%60);
+
+            let displayHours2 = (hour2 < 10) ? `0${hour2}` : hour2;
+            let displayMinutes2 = (min2 < 10) ? `0${min2}` : min2;
+            let displaySeconds2 = (sec2 < 10) ? `0${sec2}` : sec2;
+
+            paraRestime.textContent = `${displayHours2} : ${displayMinutes2}: ${displaySeconds2}`
+            paraRestime.style.color = 'red';
+            
+            //secCount ++;
+        };
+        const startBtn = document.querySelector('.start')
+        const stopBtn = document.querySelector('.stop')
+        const resetBtn = document.querySelector('.reset')
+
+        startBtn.addEventListener('click', () =>{
+            lastMom = setInterval(displayWatch, 1000);
+            startBtn.disabled = true;
+        });
+
+        stopBtn.addEventListener('click', () =>{
+            clearInterval(lastMom)
+            startBtn.disabled = false;
+        })
+        resetBtn.addEventListener('click', () =>{
+            clearInterval(lastMom);
+            displayWatch2()
+            secCount = 0;
+            startBtn.disabled = false;
+            displayWatch()
+            
+
+
+        })
+       
+        displayWatch()
+    </script>
+</body>
+</html>
